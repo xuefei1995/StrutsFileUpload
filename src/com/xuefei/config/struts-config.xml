@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 修改default.properties文件的常量 -->
+	<constant name="struts.action.extension" value="action,do,"></constant>
+	<constant name="struts.multipart.saveDir" value="F://temp//"></constant>
+	<!-- struts.multipart.maxSize=2097152 默认文件上传大小为2M-->
+	<constant name="struts.multipart.maxSize" value="102400000"></constant>
+</struts>

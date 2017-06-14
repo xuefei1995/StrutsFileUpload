@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="file" extends="struts-default" namespace="/">
+	
+		<action name="upload" class="com.xuefei.action.UploadAction" method="upload">
+
+		<!-- 向FileUploadInterceptor拦截器属性注入，也就是调用了setter方法 -->
+			<!-- 如果两个类型都写的话，那么取他们的交集，作为上传的要求类型 -->
+			<!-- 修改文件上传类型 -->
+			<!-- 允许的后缀名 -->
+		<!--  
+		<interceptor-ref name="defaultStack">
+				<param name="fileUpload.allowedTypes">image/jpg</param>
+				<param name="fileUpload.allowedExtensions">jpg</param>
+		</interceptor-ref>
+		-->
+		<param name="saveDir">F://图片//</param>
+		<result name="success">/success.jsp</result>
+		</action>
+		
+		<action name="down_*" class="com.xuefei.action.DownAction" method="{1}">
+			<param name="saveDir">F://图片//</param>
+			<result name="list">/ListFile.jsp</result>
+			<!-- 下载以流的形式返回 -->
+			<result name="load" type="stream">
+				<!-- 返回给浏览器的文件类型 返回通用的二进制类型 -->
+			   <param name="contentType">application/octet-stream</param>
+			    <!-- 返回给浏览器的输入流 -->
+			   <param name="inputName">inputStream</param>
+			    <!-- 让浏览器以下载下载形式打开  ${filename}调用对应action中的getFilename()方法 -->
+			   <param name="contentDisposition">attachment;filename="${filename}"</param>
+			    <!-- 缓存大小 -->
+			   <param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+</struts>
